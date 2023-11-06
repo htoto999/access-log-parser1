@@ -1,24 +1,33 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Введите первое число:");
-        int firstNumber = new Scanner(System.in).nextInt();
 
-        System.out.println("Введите второе число:");
-        int secondNumber = new Scanner(System.in).nextInt();
+        int count=0;
+        while (1>0)
+        {
+           System.out.println();
+           System.out.println("Please enter valid file path:");
+           String path = new Scanner (System.in) .nextLine();
 
-        int resultSum = firstNumber + secondNumber;
-        System.out.println("Сумма первого и второго чисел: "+resultSum);
+           File file = new File(path);
+           boolean isDirectory = file.isDirectory();
 
-        int resultSubstract = firstNumber - secondNumber;
-        System.out.println("Результат вычитания второго числа из первого: "+resultSubstract);
+           if (isDirectory)
+           {System.out.println("The path entered is not for a file, but for a directory, please re-check and provide correct input");continue;}
 
-        int resultMultiply = firstNumber * secondNumber;
-        System.out.println("Произведение первого и второго чиселы: "+resultMultiply);
+           boolean fileExists = file.exists();
+           if (!fileExists)
+           {System.out.println("There's no such file, please re-check and provide correct input");continue;}
+           else
+           {
+               count++;
+               System.out.println("File path provided is valid");
+               System.out.println("This is file #"+count);
+           }
 
-        double resultQuotient = (double) firstNumber / secondNumber;
-        System.out.println("Результат деления первого числа на второе: "+resultQuotient);
+        }
 
     }
 }
